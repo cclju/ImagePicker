@@ -85,11 +85,14 @@ public class ImageGridActivity extends ImageBaseActivity implements ImageDataSou
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_image_grid);
+        setContentView(R.layout.picker_activity_image_grid);
 
         imagePicker = ImagePicker.getInstance();
         imagePicker.clear();
         imagePicker.addOnImageSelectedListener(this);
+
+        imagePicker.setMultiMode(true);
+        imagePicker.setSelectLimit(9);
 
         Intent data = getIntent();
         // 新增可直接拍照

@@ -71,7 +71,7 @@ public class ImageFolderAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.adapter_folder_list_item, parent, false);
+            convertView = mInflater.inflate(R.layout.picker_adapter_folder_list_item, parent, false);
             holder = new ViewHolder(convertView);
         } else {
             holder = (ViewHolder) convertView.getTag();

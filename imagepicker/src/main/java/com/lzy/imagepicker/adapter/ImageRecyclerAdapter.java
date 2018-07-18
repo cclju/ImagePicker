@@ -82,9 +82,9 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == ITEM_TYPE_CAMERA){
-            return new CameraViewHolder(mInflater.inflate(R.layout.adapter_camera_item,parent,false));
+            return new CameraViewHolder(mInflater.inflate(R.layout.picker_adapter_camera_item,parent,false));
         }
-        return new ImageViewHolder(mInflater.inflate(R.layout.adapter_image_list_item,parent,false));
+        return new ImageViewHolder(mInflater.inflate(R.layout.picker_adapter_image_list_item,parent,false));
     }
 
     @Override

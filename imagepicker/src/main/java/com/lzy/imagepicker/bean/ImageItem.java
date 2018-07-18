@@ -24,11 +24,17 @@ public class ImageItem implements Serializable, Parcelable {
     public String mimeType;   //图片的类型
     public long addTime;      //图片的创建时间
 
+    public String videoPath;  //视屏的路径
+    public String duration;   //视屏的时长
+
     /** 图片的路径和创建时间相同就认为是同一张图片 */
     @Override
     public boolean equals(Object o) {
         if (o instanceof ImageItem) {
             ImageItem item = (ImageItem) o;
+            if (isVideo()) {
+                return this.videoPath.equalsIgnoreCase(item.videoPath) && this.addTime == item.addTime;
+            }
             return this.path.equalsIgnoreCase(item.path) && this.addTime == item.addTime;
         }
 
@@ -50,6 +56,9 @@ public class ImageItem implements Serializable, Parcelable {
         dest.writeInt(this.height);
         dest.writeString(this.mimeType);
         dest.writeLong(this.addTime);
+
+        dest.writeString(this.videoPath);
+        dest.writeString(this.duration);
     }
 
     public ImageItem() {
@@ -63,6 +72,9 @@ public class ImageItem implements Serializable, Parcelable {
         this.height = in.readInt();
         this.mimeType = in.readString();
         this.addTime = in.readLong();
+
+        this.videoPath = in.readString();
+        this.duration = in.readString();
     }
 
     public static final Parcelable.Creator<ImageItem> CREATOR = new Parcelable.Creator<ImageItem>() {
@@ -76,4 +88,8 @@ public class ImageItem implements Serializable, Parcelable {
             return new ImageItem[size];
         }
     };
+
+    public boolean isVideo() {
+        return (this.videoPath != null && !"".equals(this.videoPath));
+    }
 }

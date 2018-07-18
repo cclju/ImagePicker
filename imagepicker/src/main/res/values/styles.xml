@@ -11,7 +11,11 @@
 
     <!--SuperCheckbox的样式-->
     <style name="SuperCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
-        <item name="android:button">@drawable/selector_item_checked</item>
+        <item name="android:button">@drawable/picker_selector_item_checked</item>
+    </style>
+
+    <style name="DataSheetAnimation" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/push_up_in</item>
     </style>
 
     <style name="popupwindow_anim_style">
@@ -20,4 +24,11 @@
         <!-- 指定消失的动画xml -->
         <item name="android:windowExitAnimation">@anim/hide_to_bottom</item>
     </style>
+
+    <style name="item_divide">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/gray_divide</item>
+    </style>
+
 </resources>

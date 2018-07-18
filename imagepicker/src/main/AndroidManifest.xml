@@ -33,6 +33,16 @@
             android:configChanges="orientation|screenSize"
             android:theme="@style/ImagePickerThemeFullScreen"/>
 
+        <activity
+            android:name=".ui.CommonImagePreviewActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/ImagePickerThemeFullScreen"/>
+
+        <activity
+            android:name=".ui.CommonImageGridActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/ImagePickerTheme"/>
+
         <provider
             android:name=".ImagePickerProvider"
             android:authorities="${applicationId}.provider"

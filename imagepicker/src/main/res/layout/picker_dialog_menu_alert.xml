@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="bottom"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/popup_choose_cancel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/transparent"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" >
+
+        <TextView
+            android:id="@+id/popup_choose_cancel_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ellipse_white"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="取消"
+            android:textColor="@color/app_theme_base_blue"
+            android:textSize="@dimen/Title_TextView_B" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/popup_choose_cancel"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/popup_choose_forward"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_white_table_top"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/popup_choose_forward_text"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="转发"
+                android:textColor="@color/app_theme_base_blue"
+                android:textSize="@dimen/Title_TextView_M" />
+        </LinearLayout>
+
+        <View style="@style/item_divide" />
+
+        <LinearLayout
+            android:id="@+id/popup_choose_favorite"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_white_table_mid"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/popup_choose_favorite_text"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="收藏"
+                android:textColor="@color/app_theme_base_blue"
+                android:textSize="@dimen/Title_TextView_M" />
+        </LinearLayout>
+
+        <View style="@style/item_divide" />
+
+        <LinearLayout
+            android:id="@+id/popup_choose_delete"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_white_table_bottom"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/popup_choose_delete_text"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="删除"
+                android:textColor="@color/red"
+                android:textSize="@dimen/Title_TextView_M" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

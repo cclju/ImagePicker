@@ -117,6 +117,8 @@ public class ImagePickerActivity extends AppCompatActivity implements SeekBar.On
         btn_open_gallery.setOnClickListener(this);
         Button btn_wxDemo = (Button) findViewById(R.id.btn_wxDemo);
         btn_wxDemo.setOnClickListener(this);
+        Button btn_wxDemo2 = (Button) findViewById(R.id.btn_wxDemo2);
+        btn_wxDemo2.setOnClickListener(this);
 
         gridView = (GridView) findViewById(R.id.gridview);
     }
@@ -161,6 +163,40 @@ public class ImagePickerActivity extends AppCompatActivity implements SeekBar.On
                 break;
             case R.id.btn_wxDemo:
                 startActivity(new Intent(this, WxDemoActivity.class));
+                break;
+            case R.id.btn_wxDemo2:
+
+                Toast.makeText(this, "请先在代码里面配置图片、视频文件路径！", Toast.LENGTH_LONG).show();
+
+                // TODO
+                List<ImageItem> imageItemList = new ArrayList<>();
+
+                /**
+                 *
+                ImageItem item01 = new ImageItem();
+                item01.path = "/storage/emulated/0/Test/message/4979162048568276984/img180716_204311100297720_b.jpg";
+                imageItemList.add(item01);
+
+                ImageItem item02 = new ImageItem();
+                item02.path = "/storage/emulated/0/Test/message/4979162048568276984/img180716_204311100691954_b.jpg";
+                imageItemList.add(item02);
+
+                ImageItem item03 = new ImageItem();
+                item03.path = "/storage/emulated/0/Test/message/4979162048568276984/video180718_11163395_s.jpg";
+                item03.videoPath = "/storage/emulated/0/Test/message/4979162048568276984/video180718_11163395_b.mp4";
+                imageItemList.add(item03);
+
+                ImageItem item04 = new ImageItem();
+                item04.path = "/storage/emulated/0/Test/message/4979162048568276984/img180718_164240100504427_b.jpg";
+                imageItemList.add(item04);
+
+                int itemPos = 2;
+
+                // 图片、视频 大图预览
+                CommonImagePreviewActivity.startActivity(this, imageItemList, itemPos);
+
+                 **/
+
                 break;
         }
     }

@@ -51,6 +51,8 @@ public class ImagePicker {
     public static final int RESULT_CODE_ITEMS = 1004;
     public static final int RESULT_CODE_BACK = 1005;
 
+    public static final int REQUEST_CODE_GRID_TO_PREVIEW = 1010;
+
     public static final String EXTRA_RESULT_ITEMS = "extra_result_items";
     public static final String EXTRA_SELECTED_IMAGE_POSITION = "selected_image_position";
     public static final String EXTRA_IMAGE_ITEMS = "extra_image_items";
@@ -58,8 +60,9 @@ public class ImagePicker {
 
     private boolean multiMode = true;    //图片选择模式
     private int selectLimit = 9;         //最大选择图片数量
-    private boolean crop = true;         //裁剪
-    private boolean showCamera = true;   //显示相机
+    private boolean crop = false;         //裁剪
+//    private boolean showCamera = true;   //显示相机
+    private boolean showCamera = false;
     private boolean isSaveRectangle = false;  //裁剪后的图片是否是矩形，否者跟随裁剪框的形状
     private int outPutX = 800;           //裁剪保存宽度
     private int outPutY = 800;           //裁剪保存高度

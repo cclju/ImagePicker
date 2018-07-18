@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- textSize -->
+
+    <dimen name="Title_TextView_XXL">22dip</dimen>
+    <dimen name="Title_TextView_XL">19dip</dimen>
+    <dimen name="Title_TextView_L">18dip</dimen>
+    <dimen name="Title_TextView_B">17dip</dimen>
+    <dimen name="Title_TextView_M">16dip</dimen>
+    <dimen name="Title_TextView_S">15dp</dimen>
+
+</resources>

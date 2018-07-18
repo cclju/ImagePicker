@@ -11,4 +11,25 @@
             <enum name="circle" value="1"/>
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="CommonStyle">
+        <attr name="text" format="string"/>
+        <attr name="text_size" format="dimension"/>
+        <attr name="text_color" format="color"/>
+        <attr name="icon" format="reference"/>
+        <attr name="icon_size" format="dimension"/>
+        <attr name="icon_width" format="dimension"/>
+        <attr name="icon_height" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="ItemIconWithText">
+        <attr name="text"/>
+        <attr name="text_size"/>
+        <attr name="text_color"/>
+        <attr name="icon"/>
+        <attr name="icon_size"/>
+        <attr name="icon_width"/>
+        <attr name="icon_height"/>
+    </declare-styleable>
+
 </resources>

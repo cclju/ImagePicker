@@ -9,12 +9,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_default_image" />
+        android:src="@drawable/picker_ic_default_image" />
+
+    <ImageView
+        android:id="@+id/iv_video_play"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="left|bottom"
+        android:src="@mipmap/picker_video_play"
+        android:layout_margin="5dp"
+        android:visibility="gone"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/ic_cover_shade" />
+        android:background="@drawable/picker_ic_cover_shade" />
 
     <View
         android:id="@+id/mask"
