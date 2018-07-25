@@ -119,7 +119,8 @@ public class CommonImagePreviewActivity extends CommonImagePreviewBaseActivity i
                 onBackPressed();
             } else {
                 // 调用自定义相册（图片和视屏展示）
-                CommonImageGridActivity.startWithFinishActivity(this, mImageItems);
+//                CommonImageGridActivity.startWithFinishActivity(this, mImageItems);
+                CommonImageGridWithHeadActivity.startWithFinishActivity(this, mImageItems);
             }
 
         } else if (id == R.id.bottom_view_more) {

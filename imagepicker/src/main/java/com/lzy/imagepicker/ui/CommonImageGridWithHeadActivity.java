@@ -16,19 +16,19 @@ import android.widget.Toast;
 
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.R;
-import com.lzy.imagepicker.adapter.CommonImageRecyclerAdapter;
+import com.lzy.imagepicker.adapter.CommonImageRecyclerAdapterWithHead;
+import com.lzy.imagepicker.adapter.decoration.GridSpacingItemWithHeadDecoration;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.util.Utils;
-import com.lzy.imagepicker.view.GridSpacingItemDecoration;
 import com.lzy.imagepicker.view.item.ItemIconWithText;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * GridView 展示 图片和视屏
+ * GridView 展示 图片和视屏 with Header
  */
-public class CommonImageGridActivity extends ImageBaseActivity implements CommonImageRecyclerAdapter.OnImageItemClickListener,
+public class CommonImageGridWithHeadActivity extends ImageBaseActivity implements CommonImageRecyclerAdapterWithHead.OnImageItemClickListener,
         ImagePicker.OnImageSelectedListener, View.OnClickListener {
 
     private static final String TAG = "CommonImageGridActivity";
@@ -46,13 +46,14 @@ public class CommonImageGridActivity extends ImageBaseActivity implements Common
     private ItemIconWithText bottomViewSave;
 
     private RecyclerView mRecyclerView;
-    private CommonImageRecyclerAdapter mRecyclerAdapter;
+//    private CommonImageRecyclerAdapter mRecyclerAdapter;
+    private CommonImageRecyclerAdapterWithHead mRecyclerAdapter;
 
     private ArrayList<ImageItem> imageItemList;
 
 
     public static void startWithFinishActivity(Activity activity, List<ImageItem> itemList) {
-        Intent intentPreview = new Intent(activity, CommonImageGridActivity.class);
+        Intent intentPreview = new Intent(activity, CommonImageGridWithHeadActivity.class);
         intentPreview.putExtra(EXTRAS_IMAGES, (ArrayList<ImageItem>) itemList);
         activity.startActivity(intentPreview);
         activity.finish();
@@ -61,7 +62,7 @@ public class CommonImageGridActivity extends ImageBaseActivity implements Common
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.picker_activity_common_image_grid);
+        setContentView(R.layout.picker_activity_common_image_grid_with_head);
 
         imagePicker = ImagePicker.getInstance();
 
@@ -83,7 +84,7 @@ public class CommonImageGridActivity extends ImageBaseActivity implements Common
         bottomViewDelete = findViewById(R.id.bottom_view_delete);
         bottomViewSave = findViewById(R.id.bottom_view_save);
 
-        mRecyclerAdapter = new CommonImageRecyclerAdapter(this, null);
+        mRecyclerAdapter = new CommonImageRecyclerAdapterWithHead(this, null);
 
 //        onImageSelected(0, null, false);
 
@@ -209,16 +210,54 @@ public class CommonImageGridActivity extends ImageBaseActivity implements Common
 
 
         GridLayoutManager layoutManager = new GridLayoutManager(this, 4);
+        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                if (mRecyclerAdapter.hasHeader(position)) {
+                    return 4;
+                }
+                return 1;
+            }
+        });
 
         mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.addItemDecoration(new GridSpacingItemDecoration(4, Utils.dp2px(this, 2), false));
+        mRecyclerView.addItemDecoration(new GridSpacingItemWithHeadDecoration(4,
+                Utils.dp2px(this, 1), false));
         mRecyclerView.setAdapter(mRecyclerAdapter);
+
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) { // 静止
+
+                    if (!recyclerView.canScrollVertically(1)) {
+                        // onScrollToBottom
+                    }
+                    if (!recyclerView.canScrollVertically(-1)) {
+                        // onScrollToTop
+                    }
+                } else if (newState == RecyclerView.SCROLL_STATE_DRAGGING
+                        || newState == RecyclerView.SCROLL_STATE_SETTLING) { // 滚动中
+
+                    // onScrolling
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 0) {
+                    // onScrollDown
+                } else {
+                    // onScrollUp
+                }
+            }
+        });
     }
 
     @Override
     public void onImageItemClick(View view, ImageItem imageItem, int position) {
-        //根据是否有相机按钮确定位置
-        position = imagePicker.isShowCamera() ? position - 1 : position;
         // 图片点击 预览图片或视屏
         CommonImagePreviewActivity.startForResult(this, imageItemList, position,
                 ImagePicker.REQUEST_CODE_GRID_TO_PREVIEW);
@@ -234,13 +273,13 @@ public class CommonImageGridActivity extends ImageBaseActivity implements Common
 
         setFooterBarEnable(selectImageCount > 0);
 
-        for (int i = imagePicker.isShowCamera() ? 1 : 0; i < mRecyclerAdapter.getItemCount(); i++) {
+        for (int i = 0; i < mRecyclerAdapter.getItemCount(); i++) {
             ImageItem imageItem = mRecyclerAdapter.getItem(i);
 
             String imageItemPath = imageItem.isVideo() ? imageItem.videoPath : imageItem.path;
             String itemPath = item.isVideo() ? item.videoPath : item.path;
 
-            if (imageItemPath != null && imageItemPath.equals(itemPath)) {
+            if (imageItemPath != null && !"".equals(imageItemPath) && imageItemPath.equals(itemPath)) {
                 mRecyclerAdapter.notifyItemChanged(i);
                 return;
             }
@@ -269,61 +308,6 @@ public class CommonImageGridActivity extends ImageBaseActivity implements Common
             }
         }
 
-//        if (data != null && data.getExtras() != null) {
-//            if (resultCode == ImagePicker.RESULT_CODE_BACK) {
-////                isOrigin = data.getBooleanExtra(ImagePreviewActivity.ISORIGIN, false);
-//            } else {
-//                //从拍照界面返回
-//                //点击 X , 没有选择照片
-//                if (data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS) == null) {
-//                    //什么都不做 直接调起相机
-//                } else {
-//                    //说明是从裁剪页面过来的数据，直接返回就可以
-//                    setResult(ImagePicker.RESULT_CODE_ITEMS, data);
-//                }
-//                finish();
-//            }
-//        } else {
-//            //如果是裁剪，因为裁剪指定了存储的Uri，所以返回的data一定为null
-//            if (resultCode == RESULT_OK && requestCode == ImagePicker.REQUEST_CODE_TAKE) {
-//                //发送广播通知图片增加了
-//                ImagePicker.galleryAddPic(this, imagePicker.getTakeImageFile());
-//
-//                /**
-//                 * 2017-03-21 对机型做旋转处理
-//                 */
-//                String path = imagePicker.getTakeImageFile().getAbsolutePath();
-////                int degree = BitmapUtil.getBitmapDegree(path);
-////                if (degree != 0){
-////                    Bitmap bitmap = BitmapUtil.rotateBitmapByDegree(path,degree);
-////                    if (bitmap != null){
-////                        File file = new File(path);
-////                        try {
-////                            FileOutputStream bos = new FileOutputStream(file);
-////                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
-////                            bos.flush();
-////                            bos.close();
-////                        } catch (IOException e) {
-////                            e.printStackTrace();
-////                        }
-////                    }
-////                }
-//
-//                ImageItem imageItem = new ImageItem();
-//                imageItem.path = path;
-//                imagePicker.clearSelectedImages();
-//                imagePicker.addSelectedImageItem(0, imageItem, true);
-//                if (imagePicker.isCrop()) {
-//                    Intent intent = new Intent(CommonImageGridActivity.this, ImageCropActivity.class);
-//                    startActivityForResult(intent, ImagePicker.REQUEST_CODE_CROP);  //单选需要裁剪，进入裁剪界面
-//                } else {
-//                    Intent intent = new Intent();
-//                    intent.putExtra(ImagePicker.EXTRA_RESULT_ITEMS, imagePicker.getSelectedImages());
-//                    setResult(ImagePicker.RESULT_CODE_ITEMS, intent);   //单选不需要裁剪，返回数据
-//                    finish();
-//                }
-//            }
-//        }
     }
 
 }

@@ -27,6 +27,14 @@ public class ImageItem implements Serializable, Parcelable {
     public String videoPath;  //视屏的路径
     public String duration;   //视屏的时长
 
+    public long timestamp;    //文件的时间
+    public String timeDisplay = "";//文件的时间
+
+    public int viewType;      //展示的类型
+
+    public int groupId;       //分组（有多少组） e.g. 第一组 0，0，0； 第二组 1，1，1，1，1
+    public int groupPos;      //分组 e.g. 第一组 0，1，2；第二组 0，1，2，3，4
+
     /** 图片的路径和创建时间相同就认为是同一张图片 */
     @Override
     public boolean equals(Object o) {
@@ -59,6 +67,13 @@ public class ImageItem implements Serializable, Parcelable {
 
         dest.writeString(this.videoPath);
         dest.writeString(this.duration);
+
+        dest.writeLong(this.timestamp);
+        dest.writeString(this.timeDisplay);
+
+        dest.writeInt(this.viewType);
+        dest.writeInt(this.groupId);
+        dest.writeInt(this.groupPos);
     }
 
     public ImageItem() {
@@ -75,6 +90,13 @@ public class ImageItem implements Serializable, Parcelable {
 
         this.videoPath = in.readString();
         this.duration = in.readString();
+
+        this.timestamp = in.readLong();
+        this.timeDisplay = in.readString();
+
+        this.viewType = in.readInt();
+        this.groupId = in.readInt();
+        this.groupPos = in.readInt();
     }
 
     public static final Parcelable.Creator<ImageItem> CREATOR = new Parcelable.Creator<ImageItem>() {

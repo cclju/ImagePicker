@@ -10,4 +10,6 @@
     <dimen name="Title_TextView_M">16dip</dimen>
     <dimen name="Title_TextView_S">15dp</dimen>
 
+    <dimen name="Title_TextView_13">13dp</dimen>
+
 </resources>

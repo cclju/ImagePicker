@@ -286,7 +286,7 @@
             android:id="@+id/btn_wxDemo2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="图片和视频Demo"/>
+            android:text="完全仿微信 图片和视频 Demo"/>
 
     </LinearLayout>
 </ScrollView>
