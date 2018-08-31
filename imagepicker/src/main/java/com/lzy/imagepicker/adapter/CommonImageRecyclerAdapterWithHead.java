@@ -24,7 +24,12 @@ import java.util.List;
 /**
  * 加载相册 图片和视屏 的RecyclerView适配器
  *
- * 增加 Head 测试，需要预先设置数据
+ * 仿微信 Head（本周，月份分组），需要预先设置数据，这种方式会导致数据源污染，position 需要做一个映射
+ * 建议改进：
+ * 方式一，嵌套 GridView
+ * 方式二，GridView 部分单独用 自定义 view 实现（一个个往里面加） 参考 MessagePicturesLayout
+ *
+ *
  *
  * GridLayoutManager layoutManager = new GridLayoutManager(this, 4);
  * layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {

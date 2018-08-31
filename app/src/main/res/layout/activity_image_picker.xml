@@ -286,7 +286,13 @@
             android:id="@+id/btn_wxDemo2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="完全仿微信 图片和视频 Demo"/>
+            android:text="New 仿微信图片查看花式效果 Demo"/>
+
+        <Button
+            android:id="@+id/btn_wxDemo3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New 仿微信从聊天界面打开图片或视频 Demo（请先在代码里面配置照片、视频文件路径）"/>
 
     </LinearLayout>
 </ScrollView>
