@@ -28,8 +28,9 @@ import com.lzy.imagepickerdemo.imageloader.GlideImageLoader;
 import com.lzy.imagepickerdemo.imageloader.PicassoImageLoader;
 import com.lzy.imagepickerdemo.imageloader.UILImageLoader;
 import com.lzy.imagepickerdemo.imageloader.XUtils3ImageLoader;
+import com.lzy.imagepickerdemo.wxdemo.ImageWatcherDemoActivity;
 import com.lzy.imagepickerdemo.wxdemo.WxDemoActivity;
-import com.lzy.imagepickerdemo.wxdemo.WxDemoImageWatcherActivity;
+import com.lzy.imagepickerdemo.wxdemo.WxDemoWithImageWatcherActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -169,14 +170,17 @@ public class ImagePickerActivity extends AppCompatActivity implements SeekBar.On
                 break;
             case R.id.btn_wxDemo2:
 
-                // 测试 仿微信图片查看花式效果
-                startActivity(new Intent(this, WxDemoImageWatcherActivity.class));
+                // 测试 图片查看花式效果
+                startActivity(new Intent(this, ImageWatcherDemoActivity.class));
 
                 break;
             case R.id.btn_wxDemo3:
 
-                // 测试 本地图片和视屏
-                testChat();
+                // TODO 配置 照片、视频文件路径
+                Toast.makeText(this, "请先在代码里面配置照片、视频文件路径！", Toast.LENGTH_LONG).show();
+
+                // 测试 仿微信图片查看花式效果（使用本地图片模拟聊天界面）
+                startActivity(new Intent(this, WxDemoWithImageWatcherActivity.class));
 
                 break;
         }
@@ -275,44 +279,5 @@ public class ImagePickerActivity extends AppCompatActivity implements SeekBar.On
         }
     }
 
-    private void testChat() {
 
-        Toast.makeText(this, "请先在代码里面配置照片、视频文件路径！", Toast.LENGTH_LONG).show();
-
-        // TODO 配置 照片、视频文件路径
-//        List<ImageItem> imageItemList = new ArrayList<>();
-//
-//        for (int i = 10; i > 0; i--) {
-//
-//            long timestamp = 1532335011 - 30 * 24 * 3600 * i;
-//            int itemNum = new Random().nextInt(8) + 1; // 1-12
-//            Log.d("Picker", "itemNum: " + itemNum);
-//            for (int j = 0; j < itemNum; j++) {
-//                ImageItem item01 = new ImageItem();
-//                item01.path = "/storage/emulated/0/testcjw/test01.jpg";
-//                item01.timestamp = timestamp;
-//                imageItemList.add(item01);
-//            }
-//
-//            ImageItem item03 = new ImageItem();
-//            item03.path = "/storage/emulated/0/testcjw/test05.jpg";
-//            item03.videoPath = "/storage/emulated/0/testcjw/test05video.mp4";
-//            item03.timestamp = timestamp;
-//            imageItemList.add(item03);
-//
-//        }
-//
-//        for (int i = 3; i > 0; i--) {
-//            ImageItem item01 = new ImageItem();
-//            item01.path = "/storage/emulated/0/testcjw/test01.jpg";
-//            item01.timestamp = 1532501644;
-//            imageItemList.add(item01);
-//        }
-//
-//
-//        int itemPos = 1;
-//
-//        // 图片、视频 大图预览
-//        CommonImagePreviewActivity.startActivity(this, imageItemList, itemPos);
-    }
 }

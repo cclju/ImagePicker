@@ -292,7 +292,7 @@
             android:id="@+id/btn_wxDemo3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="New 仿微信从聊天界面打开图片或视频 Demo（请先在代码里面配置照片、视频文件路径）"/>
+            android:text="New 仿微信从聊天界面打开图片或视频 Demo（图片或视频是本地资源）"/>
 
     </LinearLayout>
 </ScrollView>

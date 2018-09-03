@@ -1,10 +1,11 @@
-package com.lzy.imagepickerdemo.imagewatcher;
+package com.lzy.imagewatcher;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.view.View;
 
-import com.lzy.imagepickerdemo.R;
+import com.lzy.imagepicker.R;
+
 
 /**
  * ViewState包含记录了一个View的瞬时UI状态<br/>

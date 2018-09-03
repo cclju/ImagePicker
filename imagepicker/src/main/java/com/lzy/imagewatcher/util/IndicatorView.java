@@ -1,4 +1,4 @@
-package com.lzy.imagepickerdemo.imagewatcher.util;
+package com.lzy.imagewatcher.util;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

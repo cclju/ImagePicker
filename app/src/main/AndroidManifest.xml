@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".wxdemo.WxDemoActivity"/>
-        <activity android:name=".wxdemo.WxDemoImageWatcherActivity"/>
+        <activity android:name=".wxdemo.ImageWatcherDemoActivity"/>
+        <activity android:name=".wxdemo.WxDemoWithImageWatcherActivity"/>
 
         <activity
             android:name="com.lzy.imagepicker.ui.ImagePreviewDelActivity"

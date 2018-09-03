@@ -1,21 +1,17 @@
 package com.lzy.imagepickerdemo.wxdemo;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.SparseArray;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.lzy.imagepickerdemo.R;
-import com.lzy.imagepickerdemo.imagewatcher.ImageWatcherHelper;
-import com.lzy.imagepickerdemo.imagewatcher.util.CustomDotIndexProvider;
-import com.lzy.imagepickerdemo.imagewatcher.util.SimpleLoader;
+import com.lzy.imagewatcher.ImageWatcherHelper;
+import com.lzy.imagewatcher.util.CustomDotIndexProvider;
+import com.lzy.imagewatcher.util.SimpleLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,27 +19,31 @@ import java.util.List;
 /**
  * ================================================
  * https://github.com/iielse/ImageWatcher
+ *
+ * 使用网络图片
  * ================================================
  */
-public class WxDemoImageWatcherActivity extends Activity {
+public class ImageWatcherDemoActivity extends Activity {
 
 
     private List<Uri> dataList = new ArrayList<>();
+    private SparseArray<ImageView> mapping;
 
     private ImageWatcherHelper iwHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        boolean isTranslucentStatus = false;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.TRANSPARENT);
-            window.setNavigationBarColor(Color.TRANSPARENT);
-            isTranslucentStatus = true;
-        }
+//        boolean isTranslucentStatus = false;
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            Window window = getWindow();
+//            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+//            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+//            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//            window.setStatusBarColor(Color.TRANSPARENT);
+//            window.setNavigationBarColor(Color.TRANSPARENT);
+//            isTranslucentStatus = true;
+//        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_watcher);
 
@@ -73,6 +73,16 @@ public class WxDemoImageWatcherActivity extends Activity {
         Glide.with(this).load(u7).into(((ImageView) findViewById(R.id.v7)));
         Glide.with(this).load(u8).into(((ImageView) findViewById(R.id.v8)));
 
+        mapping = new SparseArray<>();
+        mapping.put(0, (ImageView) findViewById(R.id.v1));
+        mapping.put(1, (ImageView) findViewById(R.id.v2));
+        mapping.put(2, (ImageView) findViewById(R.id.v3));
+        mapping.put(3, (ImageView) findViewById(R.id.v4));
+        mapping.put(4, (ImageView) findViewById(R.id.v5));
+        mapping.put(5, (ImageView) findViewById(R.id.v6));
+        mapping.put(6, (ImageView) findViewById(R.id.v7));
+        mapping.put(7, (ImageView) findViewById(R.id.v8));
+
         View.OnClickListener showListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,28 +104,6 @@ public class WxDemoImageWatcherActivity extends Activity {
     }
 
     private void show(ImageView clickedImage) {
-        SparseArray<ImageView> mapping = new SparseArray<>();
-        mapping.put(0, (ImageView) findViewById(R.id.v1));
-        mapping.put(1, (ImageView) findViewById(R.id.v2));
-        mapping.put(2, (ImageView) findViewById(R.id.v3));
-        mapping.put(3, (ImageView) findViewById(R.id.v4));
-        mapping.put(4, (ImageView) findViewById(R.id.v5));
-        mapping.put(5, (ImageView) findViewById(R.id.v6));
-        mapping.put(6, (ImageView) findViewById(R.id.v7));
-        mapping.put(7, (ImageView) findViewById(R.id.v8));
-
-//        initPosition = -1;
-//        for (int x = 0; x < imageGroupList.size(); x++) {
-//            if (imageGroupList.get(imageGroupList.keyAt(x)) == i) {
-//                initPosition = imageGroupList.keyAt(x);
-//                break;
-//            }
-//        }
-//        if (initPosition < 0) {
-//            throw new IllegalArgumentException("param ImageView i must be a member of the List <ImageView> imageGroupList!");
-//        }
-
-        // 以上是show源码。 所以就是说， clickedImage 是 mapping 中的任意一个。 如果不是就崩了。
         // 注意，下标当然是从0开始的
         iwHelper.show(clickedImage, mapping, dataList);
     }

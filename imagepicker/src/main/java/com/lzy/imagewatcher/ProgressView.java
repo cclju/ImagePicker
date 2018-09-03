@@ -1,4 +1,4 @@
-package com.lzy.imagepickerdemo.imagewatcher;
+package com.lzy.imagewatcher;
 
 import android.content.Context;
 import android.content.res.Resources;

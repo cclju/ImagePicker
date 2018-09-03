@@ -1,4 +1,4 @@
-package com.lzy.imagepickerdemo.imagewatcher;
+package com.lzy.imagewatcher;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -32,7 +32,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.lzy.imagepickerdemo.R;
+import com.lzy.imagepicker.R;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
@@ -907,13 +907,17 @@ public class ImageWatcher extends FrameLayout implements GestureDetector.OnGestu
             ViewState.write(imageView, ViewState.STATE_ORIGIN).alpha(0).scaleXBy(1.5f).scaleYBy(1.5f);
 
             final ImageView originRef = mImageGroupList.get(pos);
-            if (pos == initPosition && !hasPlayBeginAnimation) {
+            if (pos == initPosition && !hasPlayBeginAnimation) { // 需要发生动画的 view
                 isFindEnterImagePicture = true;
                 iSource = imageView;
             }
-            if (originRef != null) {
+
+            if (originRef != null) { // originRef 原始的小图 --> imageView 需要展示的大图
+
                 final int[] location = new int[2];
                 originRef.getLocationOnScreen(location);
+
+                // 原始的小图 位置赋值给 需要展示的大图
                 imageView.setTranslationX(location[0]);
                 int locationYOfFullScreen = location[1];
                 locationYOfFullScreen -= mStatusBarHeight;
@@ -931,7 +935,7 @@ public class ImageWatcher extends FrameLayout implements GestureDetector.OnGestu
                             .translationX((mWidth - bmpMirrorWidth) / 2).translationY((mHeight - bmpMirrorHeight) / 2);
                     imageView.setImageDrawable(bmpMirror);
 
-                    if (isFindEnterImagePicture) {
+                    if (isFindEnterImagePicture) { // 动画
                         animSourceViewStateTransform(imageView, vsThumb);
                     } else {
                         ViewState.restore(imageView, vsThumb.mTag);

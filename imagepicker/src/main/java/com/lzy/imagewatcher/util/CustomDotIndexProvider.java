@@ -1,4 +1,4 @@
-package com.lzy.imagepickerdemo.imagewatcher.util;
+package com.lzy.imagewatcher.util;
 
 import android.content.Context;
 import android.net.Uri;
@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
-import com.lzy.imagepickerdemo.R;
-import com.lzy.imagepickerdemo.imagewatcher.ImageWatcher;
+import com.lzy.imagepicker.R;
+import com.lzy.imagewatcher.ImageWatcher;
 
 import java.util.List;
 
